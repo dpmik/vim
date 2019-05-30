@@ -3,7 +3,7 @@ set nocompatible
 
 " Italics support for capable terminals
 if has('macunix') || system('uname') =~? '^Darwin'
-	set t_ZH=^[[3m t_ZR=^[[23m "Set the italics code
+	set t_ZH=[3m t_ZR=[23m " Set the italics code
 endif
 
 " True colors on terminals
@@ -57,6 +57,9 @@ colorscheme solarized8
 " Solarized8 - <leader>B can switch between light and dark theme
 map <Leader>B :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
+
 " Airline configuration
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 nmap <leader>1 <Plug>AirlineSelectTab1
@@ -77,7 +80,11 @@ let g:airline#extensions#tabline#enabled = 1
 
 " CSCOPE: to use cscope functionality (cscope -Rb in the root project dir to rebuild the db)
 if has("cscope")
-	set csprg=/usr/bin/cscope
+	if has('macunix') || system('uname') =~? '^Darwin'
+		set csprg=/usr/local/bin/cscope
+	else
+		set csprg=/usr/bin/cscope
+	endif
 	set csto=0
 	set cst
 	set nocsverb
@@ -142,7 +149,11 @@ let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
 " Youcompleteme need to know we want python3
-let g:ycm_python_binary_path = '/usr/bin/python3'
+if has('macunix') || system('uname') =~? '^Darwin'
+	let g:ycm_python_binary_path = '/usr/local/bin/python3'
+else
+	let g:ycm_python_binary_path = '/usr/bin/python3'
+endif
 
 " Disable preview window for Youcompleteme
 let g:ycm_add_preview_to_completeopt = 0
