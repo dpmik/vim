@@ -143,11 +143,6 @@ nmap <F8> : TagbarToggle<CR>
 " autocmd FileType * nested :call tagbar#autoopen(0)
 autocmd VimEnter * nested :call tagbar#autoopen(1)
 
-" UltiSnips triggering
-let g:UltiSnipsExpandTrigger = '<C-j>'
-let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
-
 " Youcompleteme need to know we want python3
 if has('macunix') || system('uname') =~? '^Darwin'
 	let g:ycm_python_binary_path = '/usr/local/bin/python3'
@@ -163,6 +158,10 @@ set completeopt-=preview
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" Commented setup below is a valid alternative.
+"let g:ycm_key_list_previous_completion=['<Up>']
+"let g:UltiSnipsExpandTrigger="<c-tab>"
+"let g:UltiSnipsListSnippets="<c-s-tab>"
 
 " TIPS: to reload .vimrc
 " - :so % => source current file name (~/.vimrc must be the current open file)
