@@ -102,7 +102,7 @@ if has("cscope")
 endif
 
 " Golang files
-autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab "tabstop=4 shiftwidth=4
 
 " Settings for vim-go
 let g:go_fmt_command = 'goimports'
