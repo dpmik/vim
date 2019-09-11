@@ -27,6 +27,9 @@ set cursorcolumn
 " Show the line where the cursor is located
 set cursorline
 
+" Enable mouse support
+set mouse=a
+
 " Printer settings: header row and paper size (command hardcopy)
 set printoptions=header:1,paper:A4
 
