@@ -58,6 +58,3 @@
 [submodule "pack/plug/start/vim-go"]
 	path = pack/plug/start/vim-go
 	url = https://github.com/fatih/vim-go.git
-[submodule "pack/plug/start/YouCompleteMe"]
-	path = pack/plug/start/YouCompleteMe
-	url = https://github.com/ycm-core/YouCompleteMe.git
