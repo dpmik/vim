@@ -15,6 +15,9 @@ filetype plugin indent on
 " Keep status line always active
 set laststatus=2
 
+" Enable incremental search (start the operation while typing characters)
+set incsearch
+
 " Enable line numbers
 set number
 
@@ -128,7 +131,12 @@ let g:go_highlight_types = 1
 let g:go_highlight_variable_assignments = 1
 let g:go_highlight_variable_declarations = 1
 let g:go_metalinter_autosave = 1
-let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave_enabled = ['errcheck', 'golint', 'gosec', 'govet']
+let g:go_metalinter_command = "golangci-lint"
+let g:go_metalinter_enabled = ['bodyclose', 'deadcode', 'depguard', 'dogsled', 'dupl', 'errcheck', 'funlen', 'gochecknoinits', 'goconst', 'gocritic', 'gocyclo', 'gofmt', 'goimports', 'golint', 'gosec', 'gosimple', 'govet', 'ineffassign', 'interfacer', 'lll', 'maligned', 'misspell', 'nakedret', 'prealloc', 'scopelint', 'staticcheck', 'structcheck', 'stylecheck', 'typecheck', 'unconvert', 'unparam', 'unused', 'varcheck', 'whitespace']
+
+" Highlight Go builtins as keywords
+highlight link goBuiltins Keyword
 
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
