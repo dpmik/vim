@@ -61,3 +61,6 @@
 [submodule "pack/plug/start/YouCompleteMe"]
 	path = pack/plug/start/YouCompleteMe
 	url = https://github.com/ycm-core/YouCompleteMe.git
+[submodule "pack/plug/start/emmet"]
+	path = pack/plug/start/emmet
+	url = https://github.com/mattn/emmet-vim
