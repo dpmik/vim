@@ -46,9 +46,11 @@ set wildmode=list:longest
 let g:load_doxygen_syntax=1
 
 " Enhanced mouse reporting
-if has('mouse_sgr')
-	set ttymouse=sgr
-endif
+" NOTE: THIS SHOULD BE AUTODETECTED AND NOT BE NECESSARY ANYMORE. TURN IT ON IF
+" THERE ARE TROUBLES WITH LINES LONGER THAN " ~ 230 CHARACTERS.
+"if has('mouse_sgr')
+"	set ttymouse=sgr
+"endif
 
 " Select font for gvim
 set guifont=Source\ Code\ Pro:h14
@@ -59,6 +61,13 @@ let g:solarized_term_italics=1
 " Solarized8 colorscheme activation
 set background=dark
 colorscheme solarized8
+
+" Disable automatic folding (annoying with Markdown files...).
+set nofoldenable
+
+" Emmet leader key.
+" The current setting means that invokation happens with ',,'.
+let g:user_emmet_leader_key=','
 
 " Solarized8 - <leader>B can switch between light and dark theme
 map <Leader>B :let &background = ( &background == "dark"? "light" : "dark" )<CR>
