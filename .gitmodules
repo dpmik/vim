@@ -64,3 +64,6 @@
 [submodule "pack/plug/start/emmet"]
 	path = pack/plug/start/emmet
 	url = https://github.com/mattn/emmet-vim
+[submodule "pack/plug/start/vim-terraform"]
+	path = pack/plug/start/vim-terraform
+	url = https://github.com/hashivim/vim-terraform.git
