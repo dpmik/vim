@@ -142,9 +142,9 @@ let g:go_highlight_types = 1
 let g:go_highlight_variable_assignments = 1
 let g:go_highlight_variable_declarations = 1
 let g:go_metalinter_autosave = 1
-let g:go_metalinter_autosave_enabled = ['errcheck', 'golint', 'gosec', 'govet']
+let g:go_metalinter_autosave_enabled = ['errcheck', 'revive', 'gosec', 'govet']
 let g:go_metalinter_command = "golangci-lint"
-let g:go_metalinter_enabled = ['bodyclose', 'deadcode', 'depguard', 'dogsled', 'dupl', 'errcheck', 'funlen', 'gochecknoinits', 'goconst', 'gocritic', 'gocyclo', 'gofmt', 'goimports', 'golint', 'gosec', 'gosimple', 'govet', 'ineffassign', 'interfacer', 'lll', 'maligned', 'misspell', 'nakedret', 'prealloc', 'scopelint', 'staticcheck', 'structcheck', 'stylecheck', 'typecheck', 'unconvert', 'unparam', 'unused', 'varcheck', 'whitespace']
+let g:go_metalinter_enabled = ['bodyclose', 'deadcode', 'depguard', 'dogsled', 'dupl', 'errcheck', 'exportloopref', 'funlen', 'gochecknoinits', 'goconst', 'gocritic', 'gocyclo', 'gofmt', 'goimports', 'gosec', 'gosimple', 'govet', 'ineffassign', 'interfacer', 'lll', 'misspell', 'nakedret', 'prealloc', 'revive', 'staticcheck', 'structcheck', 'stylecheck', 'typecheck', 'unconvert', 'unparam', 'unused', 'varcheck', 'whitespace']
 
 " Highlight Go builtins as keywords
 highlight link goBuiltins Keyword
