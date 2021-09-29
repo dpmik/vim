@@ -18,5 +18,6 @@ python3 install.py --clang-completer --go-completer --ts-completer
 ### Upgrade
 Enter into YouCompleteMe and run:
 ``` bash
-git submodule update --init --recursive
+git submodule update --init --recursive --force
+git submodule sync --recursive
 ```
