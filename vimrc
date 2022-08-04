@@ -6,9 +6,12 @@ if has('macunix') || system('uname') =~? '^Darwin'
 	set t_ZH=[3m t_ZR=[23m " Set the italics code
 endif
 
+" Undercurl support for capable terminals
+let &t_Cs = "\e[4:3m"
+let &t_Ce = "\e[4:0m"
+
 " True colors on terminals
 set termguicolors
-
 syntax on
 filetype plugin indent on
 
@@ -55,6 +58,9 @@ let g:load_doxygen_syntax=1
 " Select font for gvim
 set guifont=Source\ Code\ Pro:h14
 
+" Select font for printer
+set printfont="Source Code Pro:h10"
+
 " Solarized8 - italics supported
 let g:solarized_term_italics=1
 
@@ -65,8 +71,11 @@ colorscheme solarized8
 " Disable automatic folding (annoying with Markdown files...).
 set nofoldenable
 
+" Enable spell check for American English and Italian
+set spell spelllang=en_us,it
+
 " Emmet leader key.
-" The current setting means that invokation happens with ',,'.
+" The current setting means that invocation happens with ',,'.
 let g:user_emmet_leader_key=','
 
 " Solarized8 - <leader>B can switch between light and dark theme
@@ -74,6 +83,9 @@ map <Leader>B :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
+
+" Airline detect spell language and use flags to show them
+let g:airline_detect_spelllang='flag'
 
 " Airline configuration
 let g:airline#extensions#tabline#buffer_idx_mode = 1
@@ -92,8 +104,17 @@ nmap <leader>+ <Plug>AirlineSelectNextTab
 " Use the patched fonts...
 let g:airline_powerline_fonts=1
 
-" Use enanched tabline
+" Use enhanched tabline
 let g:airline#extensions#tabline#enabled = 1
+
+" Indent guides settings (default use <leader> ig to toggle on and off
+let g:indent_guides_start_level = 4
+" set guide size, it requires softtabs (does not work with hard tab)
+let g:indent_guides_guide_size = 1
+" let's use manual colors
+let g:indent_guides_auto_colors = 0
+hi IndentGuidesOdd guibg=#002b36
+hi IndentGuidesEven ctermfg=1  guibg=#073642
 
 " CSCOPE: to use cscope functionality (cscope -Rb in the root project dir to rebuild the db)
 if has("cscope")
@@ -170,11 +191,39 @@ autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit'
 autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 
+" Set PostgreSQL as default SQL syntax
+let g:sql_type_default = 'pgsql'
+
 " Toggle NERDTree
 nmap <F3> : NERDTreeToggle<CR>
 
 " Toggle tagbar
 nmap <F8> : TagbarToggle<CR>
+
+" Run Python with F7
+autocmd FileType python map <buffer> <F7> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F7> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+
+autocmd FileType py set autoindent
+autocmd FileType py set smartindent
+
+" Adhere to PEP8 formatting style (indent works with 4 chars per tab)
+autocmd BufNewFile,BufRead *.py setlocal noexpandtab tabstop=4 shiftwidth=4 noexpandtab
+" or: autocmd  FileType go set ts=4 ...
+
+let python_hightlight_all=1
+
+" Add Python support to VIRTUALENV
+if has('python3') " missing indentation due to the <<
+python3 << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+	project_base_dir = os.environ['VIRTUAL_ENV']
+	activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+	execfile(activate_this, dict(__file__=activate_this))
+EOF
+endif
 
 " Open Tagbar also if you open a supported file in an already running Vim
 " autocmd FileType * nested :call tagbar#autoopen(0)
